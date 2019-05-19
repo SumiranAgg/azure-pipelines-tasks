@@ -1,2 +1,13 @@
-steps
-  - script: echo hello
+jobs:
+  - job: build
+    displayName: 'build all tasks'
+    pool:
+      name: 'suaggarpool01'
+    steps:
+      - script: node make.js build --task {AzureAppServiceManageV0,AzureCLIV1,AzureCloudPowerShellDeploymentV1,AzureFileCopyV1,AzureFileCopyV2,AzureFileCopyV3,AzureFunctionAppV1,AzureFunctionAppContainerV1,AzureFunctionV1,AzureIoTEdgeV2,AzureKeyVaultV1,AzureMonitorAlertsV0,AzureMonitorV0,AzureMonitorV1,AzureMysqlDeploymentV1,AzureNLBManagementV1,AzurePolicyV0,AzurePowerShellV2,AzurePowerShellV3,AzureResourceGroupDeploymentV2,AzureRmWebAppDeploymentV3,AzureRmWebAppDeploymentV4,AzureWebAppV1,AzureWebAppContainerV1,AzureVmssDeploymentV0,ChefV1,ChefKnifeV1,DelayV1,DockerV0,DockerV1,DockerV2,DockerComposeV0,DotNetCoreCLIV2,DotNetCoreInstallerV0,DotNetCoreInstallerV1,DownloadBuildArtifactsV0,DownloadFileshareArtifactsV0,DownloadGitHubReleasesV0,DuffleInstallerV0,GithubReleaseV0,GoV0,GoToolV0,HelmDeployV0,HelmInstallerV0,HelmInstallerV1,IISWebAppDeployment,IISWebAppDeploymentOnMachineGroupV0,IISWebAppManagementOnMachineGroupV0,InvokeRestApiV1,JenkinsDownloadArtifactsV1,KubectlInstallerV0,KubernetesV0,KubernetesV1,KubernetesManifestV0,ManualInterventionV8,MysqlDeploymentOnMachineGroupV1,PackerBuildV0,PackerBuildV1,PowerShellOnTargetMachinesV1,PowerShellOnTargetMachinesV2,PowerShellOnTargetMachinesV3,PublishToAzureServiceBusV1,PyPIPublisherV0,QueryWorkItemsV0,ServiceFabricComposeDeployV0,ServiceFabricDeployV1,ServiceFabricPowerShellV1,ServiceFabricUpdateManifestsV2,SqlAzureDacpacDeploymentV1,SqlDacpacDeploymentOnMachineGroupV0,SqlServerDacpacDeployment,UseDotNetV2,WindowsMachineFileCopyV1,WindowsMachineFileCopyV2}
+      - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
+        displayName: "component compliance"
+        inputs:
+          sourceScanPath: 'd:\\vsts-tasks\\_build'
+          verbosity: Verbose
+          scanType: LogOnly
